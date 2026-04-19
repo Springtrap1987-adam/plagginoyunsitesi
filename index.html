@@ -1,12 +1,189 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plagg Oyun Sitesi</title>
+<meta charset="UTF-8">
+<title>PLAGG</title>
+
+<style>
+body{
+  margin:0;
+  background:#0b3d0b;
+  font-family:Arial;
+  color:white;
+}
+
+/* ÜST BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px;
+}
+
+/* SOL TARAF */
+.left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* PLAGG YAZI */
+.plagg{
+  font-size:40px;
+  color:#00ff66;
+  font-weight:bold;
+}
+
+/* KÜTÜPHANE BUTONU */
+.library-btn{
+  position:absolute;
+  top:5px;
+  left:15px;
+  background:black;
+  color:white;
+  border:none;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+/* SAĞ TARAF */
+.right{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+/* BUTON */
+button{
+  cursor:pointer;
+  padding:6px 10px;
+  border:none;
+  border-radius:5px;
+}
+
+/* OYUN GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  padding:20px;
+}
+
+/* KART */
+.card{
+  background:#145214;
+  padding:15px;
+  border-radius:10px;
+}
+
+.card button{
+  width:100%;
+  margin-top:5px;
+}
+
+/* KÜTÜPHANE */
+#library{
+  display:none;
+  padding:20px;
+}
+</style>
+
 </head>
+
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+<button class="library-btn" onclick="openLibrary()">📚 Kütüphane</button>
+
+<div class="topbar">
+
+  <div class="left">
+    <div class="plagg">plagg 🕶️</div>
+  </div>
+
+  <div class="right">
+    <div>🧀 <span id="cheese">0</span></div>
+    <button>Giriş Yap</button>
+  </div>
+
+</div>
+
+<!-- OYUNLAR -->
+<div id="store" class="grid"></div>
+
+<!-- KÜTÜPHANE -->
+<div id="library"></div>
+
+<script>
+
+let cheese = 0;
+let library = [];
+
+const games = [
+"Garten of Banban 1",
+"Garten of Banban 2",
+"Garten of Banban 3",
+"Garten of Banban 4",
+"Garten of Banban 6",
+"Garten of Banban 7",
+"Garten of Banban 8",
+"Cuphead",
+"UNDERTALE",
+"BENDY",
+"DELTARUNE",
+"INDIE CROSS FNF",
+"Poppy Playtime 1",
+"Poppy Playtime 2",
+"Poppy Playtime 3",
+"Poppy Playtime 4",
+"Poppy Playtime 5"
+];
+
+function renderStore(){
+  const store = document.getElementById("store");
+  store.innerHTML = "";
+
+  games.forEach(g=>{
+    store.innerHTML += `
+      <div class="card">
+        <h3>${g}</h3>
+        <p>300 🧀 kazan</p>
+        <button onclick="buyGame('${g}')">Satın Al</button>
+      </div>
+    `;
+  });
+}
+
+function buyGame(g){
+  if(!library.includes(g)){
+    library.push(g);
+    cheese += 300;
+    document.getElementById("cheese").innerText = cheese;
+    alert(g + " alındı!");
+  }
+}
+
+function openLibrary(){
+  const lib = document.getElementById("library");
+  const store = document.getElementById("store");
+
+  store.style.display = "none";
+  lib.style.display = "block";
+
+  lib.innerHTML = "<h2>Kütüphane</h2>";
+
+  library.forEach(g=>{
+    lib.innerHTML += `
+      <div class="card">
+        <h3>${g}</h3>
+        <button onclick="alert('Oyun açılıyor...')">▶ Oyna</button>
+      </div>
+    `;
+  });
+}
+
+renderStore();
+
+</script>
+
 </body>
 </html>
