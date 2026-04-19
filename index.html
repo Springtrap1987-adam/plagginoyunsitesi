@@ -207,5 +207,29 @@ renderStore();
   </div>
 
 </div>
+<script>
+
+function openLogin(){
+  document.getElementById("loginPanel").style.display = "flex";
+}
+
+function nextStep(){
+  document.getElementById("register").style.display = "block";
+}
+
+function createAccount(){
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  if(pass.length !== 8){
+    alert("Şifre 8 haneli olmalı!");
+    return;
+  }
+
+  alert("Hesap oluşturuldu: " + user);
+  document.getElementById("loginPanel").style.display = "none";
+}
+
+</script>
 </body>
 </html>
