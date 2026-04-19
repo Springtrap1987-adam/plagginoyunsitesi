@@ -187,6 +187,25 @@ function openLibrary(){
 renderStore();
 
 </script>
+<div id="loginPanel" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; justify-content:center; align-items:center;">
 
+  <div style="background:#145214; padding:20px; border-radius:10px; width:300px;">
+    
+    <h2>Giriş Yap</h2>
+
+    <input id="gmail" placeholder="Gmail" style="width:100%; margin-bottom:5px;">
+    
+    <button onclick="nextStep()" style="width:100%;">Devam</button>
+
+    <div id="register" style="display:none; margin-top:10px;">
+      <h3>Hesap Oluştur</h3>
+      <input id="username" placeholder="Kullanıcı Adı" style="width:100%; margin-bottom:5px;">
+      <input id="password" placeholder="8 haneli şifre" style="width:100%; margin-bottom:5px;">
+      <button onclick="createAccount()" style="width:100%;">Hesap Oluştur</button>
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
